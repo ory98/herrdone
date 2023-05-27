@@ -19,6 +19,17 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/com.github.gavlyukovskiy/p6spy-spring-boot-starter
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
+	// p6spy - 예쁘게 쿼리 보여주기
+
+	// https://mvnrepository.com/artifact/io.github.microutils/kotlin-logging
+	implementation("io.github.microutils:kotlin-logging:3.0.5")
+	// logback으로 설정
+
+
+
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")

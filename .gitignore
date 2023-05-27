@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### data source 보안 ###
+/src/main/resources/application-datasource.yml
