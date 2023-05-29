@@ -1,4 +1,4 @@
-package repository;
+package com.example.herrdone.repository;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

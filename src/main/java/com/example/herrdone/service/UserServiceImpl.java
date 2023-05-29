@@ -1,8 +1,8 @@
-package service;
+package com.example.herrdone.service;
 
+import com.example.herrdone.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
 
 import java.util.List;
 
