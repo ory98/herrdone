@@ -3,15 +3,11 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import repository.UserRepository;
 
+import java.util.List;
 import java.util.Map;
 
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public void userList(Long id) {
-        userRepository.userList();
-    };
+    List<Void> userList();
 
 }
