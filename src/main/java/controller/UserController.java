@@ -16,6 +16,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String home(Model model) {
+
         List<Void> userList = userService.userList();
         model.addAttribute("userList" , userList);
         return "index";
