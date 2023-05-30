@@ -16,7 +16,7 @@ public class Page {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String member_ip;
 
-    @Column(name = "count" , nullable = false)
+    @Column(name = "count" )
     private int count;
 
     @Column(name = "create_at" , nullable = false)

@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id" , nullable = false)
     private long id;
 
     @Column(name = "membername", nullable = false)
@@ -25,7 +26,7 @@ public class Member {
     @Column(name = "password", nullable = false)
     private String password; // 추후 security에서 암호화 후 저장
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "member_type", nullable = false)

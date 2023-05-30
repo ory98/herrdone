@@ -15,15 +15,20 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private long post_id;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
     @Column(name = "id", nullable = false)
-    private long id;
+    private Member id;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     @Column(name = "category_id" , nullable = false)
     private long category_id;
 
-    @Column(name = "thumbnail" , nullable = false)
+    @Column(name = "thumbnail" )
     private String thumbnail;
 
     @Column(name = "hit_count" , nullable = false)
@@ -35,19 +40,19 @@ public class Post {
     @Column(name = "title" , nullable = false)
     private String title;
 
-    @Column(name = "content" , nullable = false)
+    @Column(name = "content" )
     private byte[] content;
 
-    @Column(name = "like_count" , nullable = false)
+    @Column(name = "like_count" )
     private int like_count;
 
-    @Column(name = "open_status" , nullable = false)
+    @Column(name = "open_status" )
     private boolean open_status;
 
-    @Column(name = "comment_status" , nullable = false)
+    @Column(name = "comment_status")
     private boolean comment_status;
 
-    @Column(name = "like_status" , nullable = false)
+    @Column(name = "like_status" )
     private boolean like_status;
 
     @Column(name = "endpoint" , nullable = false)
