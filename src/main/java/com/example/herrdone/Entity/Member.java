@@ -25,14 +25,14 @@ public class Member {
     @Column(name = "password", nullable = false)
     private String password; // 추후 security에서 암호화 후 저장
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "email", nullable = false)
+    private String email; // 유저의 회원 아이디로 사용
 
     @Column(name = "member_type", nullable = false)
     private int member_type; // 0 - USER, 1 - ADMIN
 
-    @Column(name = "gender")
-    private int gender; // 0 - MALE, 1 - FEMALE
+    @Column(name = "gender", nullable = false)
+    private int gender; // 0 - MALE, 1 - FEMALE, 2 - UNKNOWN
 
     @Column(name = "created_at", nullable = false)
     @CreatedDate

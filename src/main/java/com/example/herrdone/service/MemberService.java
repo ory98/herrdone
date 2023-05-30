@@ -1,11 +1,20 @@
 package com.example.herrdone.service;
 
 import com.example.herrdone.Entity.Member;
+import com.example.herrdone.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface MemberService {
+@Service
+@RequiredArgsConstructor
+public class MemberService {
+    private final MemberRepository memberRepository;
 
-    List<Member> userList();
+    public List<Member> userList() {
+        // Pageable
+        return memberRepository.findAll();
+    }
 
 }

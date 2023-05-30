@@ -32,7 +32,7 @@ public class Comment {
     @CreatedDate
     private LocalDateTime created_at;
 
-    @Column(name = "modified_at", nullable = false)
+    @Column(name = "modified_at", nullable = true)
     @LastModifiedDate
     private LocalDateTime modified_at;
 
