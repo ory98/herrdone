@@ -15,17 +15,14 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
-    private long comment_id;
+    private long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    @Column(name = "id" , nullable = false)
-    private Member id;
+    @JoinColumn(name = "member_id")
+    private Member member_id;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    @Column(name = "post_id" , nullable = false)
     private Post post_id;
 
     @Column(name = "comment" , nullable = false)

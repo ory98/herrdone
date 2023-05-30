@@ -15,18 +15,15 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_id")
-    private long post_id;
+    private long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    @Column(name = "id", nullable = false)
-    private Member id;
+    @JoinColumn(name = "member_id")
+    private Member member_id;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @Column(name = "category_id" , nullable = false)
-    private long category_id;
+    private Category category_id;
 
     @Column(name = "thumbnail" )
     private String thumbnail;

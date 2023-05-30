@@ -2,28 +2,27 @@ package com.example.herrdone.controller;
 
 import com.example.herrdone.util.CommonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.herrdone.service.UserService;
-
-import java.util.List;
+import com.example.herrdone.service.MemberService;
 
 
 @RestController
 public class UserController {
 
     @Autowired
-    private final UserService userService;
+    private final MemberService memberService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @GetMapping("/user")
-    public CommonResponse home() {
+    public CommonResponse findAllUser() {
+        // Pageable
         CommonResponse result = new CommonResponse();
-        try {
 
+        try {
+            result.setData(memberService.userList());
         } catch (Exception e){
 
         }

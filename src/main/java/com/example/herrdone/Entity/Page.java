@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 public class Page {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "member_ip")
     private String member_ip;
 
     @Column(name = "count" )
