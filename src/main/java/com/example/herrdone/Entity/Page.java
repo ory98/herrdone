@@ -3,7 +3,6 @@ package com.example.herrdone.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "page")
 @Getter
 @Setter
-public class Page {
+public class Page<M> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
