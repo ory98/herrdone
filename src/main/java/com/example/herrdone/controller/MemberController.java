@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
+//    private final MemberService memberService;
 
     public final MemberRepository memberRepository;
-    @GetMapping("/user")
+    @GetMapping("/member")
     public CommonResponse memberList(@PageableDefault(page = 0, size = 10) Pageable pageable) {
 
         CommonResponse result = null;
