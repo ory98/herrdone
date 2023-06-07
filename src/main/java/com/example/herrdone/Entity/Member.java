@@ -34,7 +34,7 @@ public class Member extends AuditingEntityDate {
         return String.format("Member(id=%d, membername=%s, password=%s, email=%s, member_type=%d", this.getId(), this.membername, this.password, this.email, this.member_type);
     }
 
-    public MemberRes toDto(){
+    public MemberRes toResDto(){
         return new MemberRes(this.getId(), this.email, this.membername, this.member_type == 1 ? "admin" : "user", this.gender == 0 ? "male" : this.gender == 1 ? "female" : "unknown");
     }
 

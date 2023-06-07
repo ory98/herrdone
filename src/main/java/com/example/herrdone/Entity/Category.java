@@ -25,7 +25,7 @@ public class Category extends AuditingEntityId {
         return String.format("Category(id=%d, category_name=%s)", this.getId(), this.category_name);
     }
 
-    public CategoryRes toDto(){
+    public CategoryRes toResDto(){
         return new CategoryRes(this.getId(), this.category_name);
     }
 

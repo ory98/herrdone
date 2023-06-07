@@ -1,5 +1,7 @@
 package com.example.herrdone.DTO.Response;
 
+import java.time.LocalDateTime;
+
 public record PostRes(
         long id,
         MemberRes member,
@@ -12,6 +14,7 @@ public record PostRes(
         int like_count,
         boolean open_status,
         boolean like_status,
-        String endpoint
+        String endpoint,
+        LocalDateTime modified_at
 ) {
 }

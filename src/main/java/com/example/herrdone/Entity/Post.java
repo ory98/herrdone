@@ -55,4 +55,6 @@ public class Post extends AuditingEntityDate {
     @Column(name = "endpoint" , nullable = false)
     private String endpoint;
 
+    @Column(name = "display_dt")
+    private LocalDateTime display_dt;
 }
