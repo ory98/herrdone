@@ -1,5 +1,6 @@
 package com.example.herrdone.Entity;
 
+import com.example.herrdone.util.AuditingEntityDate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,21 +8,19 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
 @Getter
 @Setter
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Post extends AuditingEntityDate {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class)
     @JoinColumn(name = "member_id")
     private Member member_id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Category.class)
     @JoinColumn(name = "category_id")
     private Category category_id;
 
@@ -38,7 +37,8 @@ public class Post {
     private String title;
 
     @Column(name = "content" )
-    private byte[] content;
+    @Lob
+    private String content;
 
     @Column(name = "like_count" )
     private int like_count;
@@ -54,13 +54,5 @@ public class Post {
 
     @Column(name = "endpoint" , nullable = false)
     private String endpoint;
-
-    @Column(name = "created_at", nullable = false)
-    @CreatedDate
-    private LocalDateTime created_at;
-
-    @Column(name = "modified_at", nullable = false)
-    @LastModifiedDate
-    private LocalDateTime modified_at;
 
 }

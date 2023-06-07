@@ -27,6 +27,10 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging:3.0.5")
 	// logback으로 설정
 
+	// https://mvnrepository.com/artifact/com.github.javafaker/javafaker
+	implementation("com.github.javafaker:javafaker:1.0.2")
+	//	더미데이터 생성
+
 
 
 

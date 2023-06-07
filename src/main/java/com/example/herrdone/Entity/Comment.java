@@ -1,5 +1,6 @@
 package com.example.herrdone.Entity;
 
+import com.example.herrdone.util.AuditingEntityDate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,30 +13,22 @@ import java.time.LocalDateTime;
 @Table(name = "comment")
 @Getter
 @Setter
-public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class Comment extends AuditingEntityDate {
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member member_id;
+    private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Post.class)
     @JoinColumn(name = "post_id")
-    private Post post_id;
+    private Post post;
 
     @Column(name = "comment" , nullable = false)
     private String comment;
 
-    @Column(name = "created_at", nullable = false)
-    @CreatedDate
-    private LocalDateTime created_at;
-
-    @Column(name = "modified_at", nullable = true)
-    @LastModifiedDate
-    private LocalDateTime modified_at;
-
+    @Override
+    public String toString(){
+        return String.format("Comment(id=%d, member=%s, post=%s, comment=%s)", this.getId(),this.member, this.post, this.comment);
+    }
 
 }
 

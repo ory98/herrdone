@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "page")
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Page<M> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

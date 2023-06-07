@@ -1,23 +1,18 @@
 package com.example.herrdone.Entity;
 
 
+import com.example.herrdone.DTO.Response.MemberRes;
+import com.example.herrdone.util.AuditingEntityDate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "member")
 @Getter
 @Setter
-public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Member extends AuditingEntityDate {
 
     @Column(name = "membername", nullable = false)
     private String membername;
@@ -34,11 +29,13 @@ public class Member {
     @Column(name = "gender", nullable = false)
     private int gender; // 0 - MALE, 1 - FEMALE, 2 - UNKNOWN
 
-    @Column(name = "created_at", nullable = false)
-    @CreatedDate
-    private LocalDateTime created_at;
+    @Override
+    public String toString(){
+        return String.format("Member(id=%d, membername=%s, password=%s, email=%s, member_type=%d", this.getId(), this.membername, this.password, this.email, this.member_type);
+    }
 
-    @Column(name = "modified_at", nullable = false)
-    @LastModifiedDate
-    private LocalDateTime modified_at;
+    public MemberRes toDto(){
+        return new MemberRes(this.getId(), this.email, this.membername, this.member_type == 1 ? "admin" : "user", this.gender == 0 ? "male" : this.gender == 1 ? "female" : "unknown");
+    }
+
 }

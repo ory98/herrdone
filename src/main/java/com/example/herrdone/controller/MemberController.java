@@ -23,7 +23,7 @@ public class MemberController {
         CommonResponse result = null;
 
         try {
-            result = new CommonResponse<>("200" , "OK" , memberRepository.findAll(pageable));
+            result = new CommonResponse<>("200" , "OK" , memberRepository.findAll(pageable).map(member -> member.toDto()));
         }
         catch (Exception e) {
             result = new CommonResponse<>("503", "Database Connection Error" , null);
