@@ -25,9 +25,11 @@ public class LoggerAspect {
         this.connectionUtil = connectionUtil;
     }
 
-
     @Pointcut("execution(* com.example.herrdone.controller.*Controller.*(..))")
-    private void controllerCut(){ }
+    private void controllerCut(){  }
+
+    @Pointcut("execution(* com.example.herrdone.service.*Service.*(..))")
+    private void serviceCut(){  }
 
     @Before("controllerCut()")
     public void controllerLoggerAdvice(JoinPoint joinPoint){

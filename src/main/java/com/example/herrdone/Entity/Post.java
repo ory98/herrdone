@@ -52,7 +52,7 @@ public class Post extends AuditingEntityDate {
     @Column(name = "like_status" )
     private boolean like_status;
 
-    @Column(name = "endpoint" , nullable = false)
+    @Column(name = "endpoint" , nullable = false, unique = true)
     private String endpoint;
 
     @Column(name = "display_dt")
