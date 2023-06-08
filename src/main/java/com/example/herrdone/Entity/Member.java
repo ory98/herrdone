@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class Member extends AuditingEntityDate {
 
-    @Column(name = "membername", nullable = false)
+    @Column(name = "membername", nullable = false, unique = true)
     private String membername;
 
     @Column(name = "password", nullable = false)

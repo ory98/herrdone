@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/member")
 public class MemberController {
 
 //    private final MemberService memberService;
 
     public final MemberRepository memberRepository;
-    @GetMapping("/member")
-    public CommonResponse memberList(@PageableDefault(page = 0, size = 10) Pageable pageable) {
 
+    @GetMapping("/all")
+    public CommonResponse getAllMembers(@PageableDefault(page = 0, size = 10) Pageable pageable) {
         CommonResponse result = null;
 
         try {
@@ -31,11 +32,10 @@ public class MemberController {
         }
 
         return result;
-
     }
 
     @PostMapping
-    public void insertMember(MemberSaveReq memberSaveReq) {
+    public void postNewMember(MemberSaveReq memberSaveReq) {
 
     }
 

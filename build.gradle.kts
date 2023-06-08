@@ -30,6 +30,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.github.javafaker/javafaker
 	implementation("com.github.javafaker:javafaker:1.0.2")
 	//	더미데이터 생성
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+	implementation("org.springframework.boot:spring-boot-starter-aop:3.0.4")
+	// aop
 
 
 
