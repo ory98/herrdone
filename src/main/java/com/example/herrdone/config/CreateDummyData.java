@@ -20,17 +20,17 @@ public class CreateDummyData {
 
 
     // 더미데이터가 필요한 경우에만
-    @EventListener(ApplicationReadyEvent.class)
-    private void createDummyData(){
-        List<Member> memberList = new ArrayList<>();
-        int count = 0;
-        while (count < 100){
-            memberList.add(generateMember());
-            count++;
-        }
-        System.out.println(memberList.get(0));
-        memberRepository.saveAll(memberList);
-    }
+//    @EventListener(ApplicationReadyEvent.class)
+//    private void createDummyData(){
+//        List<Member> memberList = new ArrayList<>();
+//        int count = 0;
+//        while (count < 100){
+//            memberList.add(generateMember());
+//            count++;
+//        }
+//        System.out.println(memberList.get(0));
+//        memberRepository.saveAll(memberList);
+//    }
     // 더미데이터가 필요한 경우에만
 
     private Member generateMember () {

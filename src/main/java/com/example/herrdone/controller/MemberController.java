@@ -1,5 +1,6 @@
 package com.example.herrdone.controller;
 
+import com.example.herrdone.DTO.Request.MemberSaveReq;
 import com.example.herrdone.repository.MemberRepository;
 import com.example.herrdone.service.MemberService;
 import com.example.herrdone.util.CommonResponse;
@@ -30,6 +31,11 @@ public class MemberController {
         }
 
         return result;
+
+    }
+
+    @PostMapping
+    public void insertMember(MemberSaveReq memberSaveReq) {
 
     }
 
