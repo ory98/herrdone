@@ -1,16 +1,13 @@
 package com.example.herrdone.config.aop;
 
 
+import com.example.herrdone.util.ConnectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import kotlin.jvm.functions.Function0;
-import kotlin.jvm.internal.Intrinsics;
-import kotlin.text.StringsKt;
-import mu.KLogger;
-import mu.KotlinLogging;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -20,13 +17,16 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect
 public class LoggerAspect {
 
-    public KLogger log;
+    private final ConnectionUtil connectionUtil;
 
-    public KLogger getLog() {
-        return this.log;
+    private final Log log = LogFactory.getLog(LoggerAspect.class);
+
+    public LoggerAspect(ConnectionUtil connectionUtil) {
+        this.connectionUtil = connectionUtil;
     }
 
-    @Pointcut("execution(* com.example.herrdone.controller.*controller.*(..))")
+
+    @Pointcut("execution(* com.example.herrdone.controller.*Controller.*(..))")
     private void controllerCut(){ }
 
     @Before("controllerCut()")
@@ -38,11 +38,22 @@ public class LoggerAspect {
 
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
-        System.out.println("\nrequest url : " + request.getServletPath() + "\ntype : " + typeName + "\nmethod : " + methodName + "\n");
-        this.getLog().info(() -> StringsKt.trimIndent("\nrequest url : " + request.getServletPath() + "\ntype : " + typeName + "\nmethod : " + methodName + "\n"));
+
+        log.info(
+                "\nHTTP REQUEST" +
+                "\nClient IP : " + connectionUtil.getClientIP(request) +
+                "\nRequest URL : " + request.getServletPath() +
+                "\nHandle Controller : " + typeName +
+                "\nMethod : " + methodName + "\n"
+        );
     }
 
     @AfterReturning(pointcut = "controllerCut()", returning = "result")
     public void controllerLogAfter(JoinPoint joinPoint, Object result){
+        log.info(
+                "\nHTTP RESPONSE" +
+                "\nController Method : " + joinPoint.getSignature().getName() +
+                "\nMethod Return Value : " + result + "\n"
+        );
     }
 }
