@@ -1,5 +1,6 @@
 package com.example.herrdone.Entity;
 
+import com.example.herrdone.DTO.Response.PageRes;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +25,8 @@ public class Page<M> {
     @Column(name = "visited_at" , nullable = false)
     @CreatedDate
     private LocalDateTime visited_at;
+
+    public PageRes toResDto() {
+        return new PageRes(this.getMember_ip(),this.visited_at);
+    }
 }

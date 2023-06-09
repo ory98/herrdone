@@ -18,11 +18,11 @@ public class Post extends AuditingEntityDate {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class)
     @JoinColumn(name = "member_id")
-    private Member member_id;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Category.class)
     @JoinColumn(name = "category_id")
-    private Category category_id;
+    private Category category;
 
     @Column(name = "thumbnail" )
     private String thumbnail;
@@ -57,4 +57,5 @@ public class Post extends AuditingEntityDate {
 
     @Column(name = "display_dt")
     private LocalDateTime display_dt;
+
 }
