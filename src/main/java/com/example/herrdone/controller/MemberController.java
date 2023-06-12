@@ -1,6 +1,7 @@
 package com.example.herrdone.controller;
 
 import com.example.herrdone.DTO.Request.MemberSaveReq;
+import com.example.herrdone.entity.Member;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.MemberRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 
 @RestController
@@ -38,7 +40,6 @@ public class MemberController {
 
     @PostMapping
     public void postNewMember(MemberSaveReq memberSaveReq) {
-
     }
 
 

@@ -29,7 +29,7 @@
     <!--    파일 저장 로그-->
 
 
-    <!--    <root level="debug">&lt;!&ndash;개발용&ndash;&gt;-->
+<!--        <root level="debug">&lt;!&ndash;개발용&ndash;&gt;-->
     <root level="info"><!--상용-->
         <appender-ref ref="STDOUT" /><!--개발 로그-->
         <appender-ref ref="FILE" /><!--파일 저장 로그-->

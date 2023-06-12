@@ -27,7 +27,7 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
 
     private String formatSql(String category, String sql){
         String reqsql = sql;
-        if(reqsql == null || reqsql.trim() == ""){
+        if(reqsql == null || reqsql.trim().equals("")){
             return reqsql;
         }
 

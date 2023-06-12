@@ -25,3 +25,7 @@ decorator:
   datasource:
     p6spy:
       enable-logging: true # sql?? ?? ?? ??, ?? false, ???? true
+
+logging:
+  level:
+    root: info
