@@ -23,10 +23,6 @@ dependencies {
 	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 	// p6spy - 예쁘게 쿼리 보여주기
 
-	// https://mvnrepository.com/artifact/commons-logging/commons-logging
-	implementation("commons-logging:commons-logging:1.2")
-	// logging
-
 	// https://mvnrepository.com/artifact/com.github.javafaker/javafaker
 	implementation("com.github.javafaker:javafaker:1.0.2")
 	//	더미데이터 생성

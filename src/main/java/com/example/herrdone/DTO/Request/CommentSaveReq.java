@@ -1,8 +1,8 @@
 package com.example.herrdone.DTO.Request;
 
-import com.example.herrdone.Entity.Comment;
-import com.example.herrdone.Entity.Member;
-import com.example.herrdone.Entity.Post;
+import com.example.herrdone.entity.Comment;
+import com.example.herrdone.entity.Member;
+import com.example.herrdone.entity.Post;
 
 public record CommentSaveReq(
         Long member_id,

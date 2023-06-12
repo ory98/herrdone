@@ -1,4 +1,4 @@
-package com.example.herrdone.Entity;
+package com.example.herrdone.entity;
 
 
 import com.example.herrdone.DTO.Response.MemberRes;

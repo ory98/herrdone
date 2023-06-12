@@ -1,6 +1,6 @@
 package com.example.herrdone.DTO.Request;
 
-import com.example.herrdone.Entity.Member;
+import com.example.herrdone.entity.Member;
 
 public record MemberSaveReq(
         String membername,

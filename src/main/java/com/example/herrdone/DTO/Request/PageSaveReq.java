@@ -1,6 +1,6 @@
 package com.example.herrdone.DTO.Request;
 
-import com.example.herrdone.Entity.Page;
+import com.example.herrdone.entity.Page;
 
 import java.time.LocalDateTime;
 

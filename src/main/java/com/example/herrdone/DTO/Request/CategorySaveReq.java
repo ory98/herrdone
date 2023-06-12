@@ -1,6 +1,6 @@
 package com.example.herrdone.DTO.Request;
 
-import com.example.herrdone.Entity.Category;
+import com.example.herrdone.entity.Category;
 
 public record CategorySaveReq(
         String category_name
