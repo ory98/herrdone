@@ -3,6 +3,7 @@ package com.example.herrdone.config.aop;
 
 import com.example.herrdone.util.ConnectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
@@ -15,12 +16,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Component
 @Aspect
+@Slf4j
 public class LoggerAspect {
 
     private final ConnectionUtil connectionUtil;
-
-    private final Log log = LogFactory.getLog(LoggerAspect.class);
-
     public LoggerAspect(ConnectionUtil connectionUtil) {
         this.connectionUtil = connectionUtil;
     }

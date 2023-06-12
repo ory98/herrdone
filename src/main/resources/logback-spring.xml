@@ -13,13 +13,13 @@
 
     <!--    파일 저장 로그-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_PATH}/kotlinBlogLogback.log</file>
+        <file>${LOGS_PATH}/herrdone.log</file>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}:%-3relative [%thread] %-5level %logger{36} %M %n - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_PATH}/kotlinBlogLog.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <fileNamePattern>${LOGS_PATH}/herrdone.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
             <timeBasedRileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedRileNamingAndTriggeringPolicy>

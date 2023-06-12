@@ -23,10 +23,6 @@ dependencies {
 	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 	// p6spy - 예쁘게 쿼리 보여주기
 
-//	// https://mvnrepository.com/artifact/io.github.microutils/kotlin-logging
-//	implementation("io.github.microutils:kotlin-logging:3.0.5")
-//	// logback으로 설정
-
 	// https://mvnrepository.com/artifact/commons-logging/commons-logging
 	implementation("commons-logging:commons-logging:1.2")
 	// logging
