@@ -6,8 +6,6 @@ public record CategorySaveReq(
         String category_name
 ) {
     public Category toEntity(){
-        Category category = new Category();
-        category.setCategory_name(category_name);
-        return category;
+        return new Category(category_name);
     }
 }

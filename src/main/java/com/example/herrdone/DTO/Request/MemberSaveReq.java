@@ -6,18 +6,18 @@ public record MemberSaveReq(
         String membername,
         String password,
         String email,
-        int member_type,
-        int gender
+        int member_type, // 0 - USER, 1 - ADMIN
+        int gender // 0 - MALE, 1 - FEMALE, 2 - UNKNOWN
 ){
 
     public Member toEntity(){
-        Member member = new Member();
-        member.setMembername(membername);
-        member.setPassword(password);
-        member.setEmail(email);
-        member.setMember_type(member_type);
-        member.setGender(gender);
-        return member;
+        return Member.builder()
+                .membername(membername)
+                .password(password)
+                .email(email)
+                .member_type(member_type)
+                .gender(gender)
+                .build();
     }
 }
 

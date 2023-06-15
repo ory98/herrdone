@@ -8,6 +8,7 @@ import com.example.herrdone.repository.MemberRepository;
 import com.example.herrdone.service.MemberService;
 import com.example.herrdone.util.CommonResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
+@Slf4j
 public class MemberController {
 
 //    private final MemberService memberService;

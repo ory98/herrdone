@@ -5,17 +5,10 @@ import com.example.herrdone.entity.Page;
 import java.time.LocalDateTime;
 
 public record PageSaveReq(
-
-        String member_ip,
-        LocalDateTime visited_at
-
+        String member_ip
 ) {
 
     public Page toEntity() {
-        Page page = new Page();
-        page.setMember_ip(member_ip);
-        page.setVisited_at(visited_at);
-
-        return page;
+        return new Page(member_ip);
     }
 }

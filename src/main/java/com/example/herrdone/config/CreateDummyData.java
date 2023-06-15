@@ -5,7 +5,12 @@ import com.example.herrdone.entity.Member;
 import com.example.herrdone.repository.MemberRepository;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class CreateDummyData {
@@ -14,18 +19,18 @@ public class CreateDummyData {
     private MemberRepository memberRepository;
 
 
-//    // 더미데이터가 필요한 경우에만
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void createDummyData(){
-//        List<Member> memberList = new ArrayList<>();
-//        int count = 0;
-//        while (count < 100){
-//            memberList.add(generateMember());
-//            count++;
-//        }
-//        memberRepository.saveAll(memberList);
-//    }
-//    // 더미데이터가 필요한 경우에만
+    // 더미데이터가 필요한 경우에만
+    @EventListener(ApplicationReadyEvent.class)
+    public void createDummyData(){
+        List<Member> memberList = new ArrayList<>();
+        int count = 0;
+        while (count < 100){
+            memberList.add(generateMember());
+            count++;
+        }
+        memberRepository.saveAll(memberList);
+    }
+    // 더미데이터가 필요한 경우에만
 
     private Member generateMember () {
         Faker faker = new Faker();

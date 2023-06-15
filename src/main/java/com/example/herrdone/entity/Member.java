@@ -4,14 +4,15 @@ package com.example.herrdone.entity;
 import com.example.herrdone.DTO.Response.MemberRes;
 import com.example.herrdone.util.AuditingEntityDate;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
 @Table(name = "member")
 @Getter
 @Setter
+@ToString(exclude = {"password"})
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends AuditingEntityDate {
 
     @Column(name = "membername", nullable = false, unique = true)
@@ -23,19 +24,48 @@ public class Member extends AuditingEntityDate {
     @Column(name = "email", nullable = false)
     private String email; // 유저의 회원 아이디로 사용
 
-    @Column(name = "member_type", nullable = false)
-    private int member_type; // 0 - USER, 1 - ADMIN
+    @Enumerated(value = EnumType.STRING)
+    private MemberType member_type; // 0 - USER, 1 - ADMIN
 
-    @Column(name = "gender", nullable = false)
-    private int gender; // 0 - MALE, 1 - FEMALE, 2 - UNKNOWN
-
-    @Override
-    public String toString(){
-        return String.format("Member(id=%d, membername=%s, password=%s, email=%s, member_type=%d", this.getId(), this.membername, this.password, this.email, this.member_type);
-    }
+    @Enumerated(value = EnumType.STRING)
+    private MemberGender gender; // 0 - MALE, 1 - FEMALE, 2 - UNKNOWN
 
     public MemberRes toResDto(){
-        return new MemberRes(this.getId(), this.email, this.membername, this.member_type == 1 ? "admin" : "user", this.gender == 0 ? "male" : this.gender == 1 ? "female" : "unknown");
+        return new MemberRes(this.getId(), this.email, this.membername, this.member_type.getType(), this.gender.getGender());
+    }
+
+    @Builder
+    public Member (String membername, String password, String email, int member_type, int gender){
+        this.membername = membername;
+        this.password = password;
+        this.email = email;
+        this.member_type = member_type == 0 ? MemberType.USER : MemberType.ADMIN;
+        this.gender = gender == 0 ? MemberGender.MALE : gender == 1 ? MemberGender.FEMALE : MemberGender.UNKNOWN;
+    }
+
+    public enum MemberType {
+        ADMIN("관리자"),
+        USER("사용자");
+
+        @Getter
+        private String type;
+
+        MemberType(String type){
+            this.type = type;
+        }
+    }
+
+    public enum MemberGender {
+        MALE("남성"),
+        FEMALE("여성"),
+        UNKNOWN("알리고 싶지 않음");
+
+        @Getter
+        private String gender;
+
+        MemberGender(String gender){
+            this.gender = gender;
+        }
     }
 
 }

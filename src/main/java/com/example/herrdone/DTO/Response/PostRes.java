@@ -13,8 +13,9 @@ public record PostRes(
         String content,
         int like_count,
         boolean open_status,
+        boolean comment_status,
         boolean like_status,
         String endpoint,
-        LocalDateTime modified_at
+        LocalDateTime display_dt
 ) {
 }
