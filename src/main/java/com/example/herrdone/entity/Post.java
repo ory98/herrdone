@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "post")
 @Getter
-@Setter
 @ToString(exclude = {"member", "category"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends AuditingEntityDate {
@@ -104,6 +103,38 @@ public class Post extends AuditingEntityDate {
         this.comment_status = comment_status;
         this.endpoint = endpoint;
         this.display_dt = display_dt;
+    }
+
+    public void updatePost(
+            Category category,
+            String thumbnail,
+            int pinned,
+            String title,
+            String content,
+            boolean open_status,
+            boolean like_status,
+            boolean comment_status,
+            String endpoint,
+            LocalDateTime display_dt
+    ){
+        this.category = category;
+        this.thumbnail = thumbnail;
+        this.pinned = pinned;
+        this.title = title;
+        this.content = content;
+        this.open_status = open_status;
+        this.like_status = like_status;
+        this.comment_status = comment_status;
+        this.endpoint = endpoint;
+        this.display_dt = display_dt;
+    }
+
+    public void addLike(){
+        this.like_count++;
+    }
+
+    public void reduceLike(){
+        this.like_count = this.like_count != 0 ? this.like_count - 1 : 0;
     }
 
 }

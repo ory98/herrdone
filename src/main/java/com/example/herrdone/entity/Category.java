@@ -8,7 +8,6 @@ import lombok.*;
 @Entity
 @Table(name = "category")
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category extends AuditingEntityId {
@@ -22,6 +21,10 @@ public class Category extends AuditingEntityId {
     }
 
     public Category (String category_name) {
+        this.category_name = category_name;
+    }
+
+    public void updateCategory (String category_name){
         this.category_name = category_name;
     }
 

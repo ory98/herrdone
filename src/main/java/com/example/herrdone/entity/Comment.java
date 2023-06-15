@@ -7,7 +7,6 @@ import lombok.*;
 @Entity
 @Table(name = "comment")
 @Getter
-@Setter
 @ToString(exclude = {"member", "post"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends AuditingEntityDate {
@@ -26,6 +25,9 @@ public class Comment extends AuditingEntityDate {
     public Comment (Member member, Post post, String comment){
         this.member = member;
         this.post = post;
+        this.comment = comment;
+    }
+    public void update (String comment){
         this.comment = comment;
     }
 

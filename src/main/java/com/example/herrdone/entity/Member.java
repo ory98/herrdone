@@ -10,7 +10,6 @@ import lombok.*;
 @Entity
 @Table(name = "member")
 @Getter
-@Setter
 @ToString(exclude = {"password"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends AuditingEntityDate {
@@ -66,6 +65,13 @@ public class Member extends AuditingEntityDate {
         MemberGender(String gender){
             this.gender = gender;
         }
+    }
+
+    public void updateMember (String membername, String password, int gender, int member_type){
+        this.membername = membername;
+        this.password = password;
+        this.member_type = member_type == 0 ? MemberType.USER : MemberType.ADMIN;
+        this.gender = gender == 0 ? MemberGender.MALE : gender == 1 ? MemberGender.FEMALE : MemberGender.UNKNOWN;
     }
 
 }

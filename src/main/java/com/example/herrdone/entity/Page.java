@@ -33,4 +33,8 @@ public class Page extends AuditingEntityId {
         this.member_ip = member_ip;
     }
 
+    public void updatePage(LocalDateTime visited_at){
+        this.visited_at = visited_at;
+    }
+
 }
