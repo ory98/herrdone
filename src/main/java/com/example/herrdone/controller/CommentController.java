@@ -1,11 +1,13 @@
 package com.example.herrdone.controller;
 
+import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.CommentRepository;
 import com.example.herrdone.service.CommentService;
 import com.example.herrdone.util.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,14 +22,12 @@ public class CommentController {
     private final CommentRepository commentRepository;
 
     @GetMapping("/all")
-    public CommonResponse getAllComments(@PageableDefault(page = 0, size = 10) Pageable pageable) {
-        CommonResponse result = null;
+    public Object getAllComments(@PageableDefault(page = 0, size = 10) Pageable pageable) {
         try {
-            result = new CommonResponse("200" , "OK" , commentRepository.findAll());
+            return new CommonResponse<>(HttpStatus.OK , "OK" , commentRepository.findAll());
         } catch (Exception e) {
-            result = new CommonResponse<>("503", "Database Connection Error" , null);
+            return ErrorCode.DB_CONNECTION_REFUSED;
         }
-        return result;
     }
 }
 

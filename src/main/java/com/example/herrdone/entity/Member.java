@@ -14,13 +14,13 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends AuditingEntityDate {
 
-    @Column(name = "membername", nullable = false, unique = true)
+    @Column(name = "membername", nullable = false)
     private String membername;
 
     @Column(name = "password", nullable = false)
     private String password; // 추후 security에서 암호화 후 저장
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email; // 유저의 회원 아이디로 사용
 
     @Enumerated(value = EnumType.STRING)

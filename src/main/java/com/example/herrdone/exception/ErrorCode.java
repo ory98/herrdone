@@ -8,12 +8,14 @@ import lombok.Getter;
 public enum ErrorCode {
     INVALID_INPUT_VALUE("CD01", "Invalid Input Value"),
     ENTITY_NOT_FOUND("CD02", "Entity Not Found"),
-    DB_CONNECTION_REFUSED("CD03", "Database Connection is Refused");
+    DB_CONNECTION_REFUSED("CD03", "Database Connection is Refused"),
+    DUPLICATED_EMAIL("CD04", "Duplicated Email"),
+    CANNOT_FIND_USER("CD05", "Cannot Find User");
 
     private final String code;
     private final String message;
 
-    private ErrorCode(String code, String message){
+    ErrorCode(String code, String message){
         this.code = code;
         this.message = message;
     }

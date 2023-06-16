@@ -1,10 +1,14 @@
 package com.example.herrdone.exception;
 
 
-public class BusinessException extends RuntimeException {
-    private ErrorCode errorCode;
+import lombok.Getter;
 
-    public final ErrorCode getErrorCode() {return this.getErrorCode();}
+public class BusinessException extends RuntimeException {
+
+    @Getter
+    private final ErrorCode errorCode;
+
+//    public final ErrorCode getErrorCode() {return this.getErrorCode();}
 
     public BusinessException (ErrorCode errorCode) {
         super(errorCode.getMessage());
