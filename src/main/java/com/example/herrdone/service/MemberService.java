@@ -1,5 +1,6 @@
 package com.example.herrdone.service;
 
+import com.example.herrdone.DTO.Request.MemberFindReq;
 import com.example.herrdone.DTO.Request.MemberSaveReq;
 import com.example.herrdone.DTO.Response.MemberRes;
 import com.example.herrdone.entity.Member;
@@ -25,6 +26,20 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
+    public MemberRes findMember (Long id, String email){
+        if(id != null){
+            return memberRepository
+                    .findById(id)
+                    .orElseThrow(() -> new BusinessException(ErrorCode.CANNOT_FIND_USER))
+                    .toResDto();
+        } else if (email != null){
+            return memberRepository
+                    .findByEmail(email)
+                    .toResDto();
+        } else throw new BusinessException(ErrorCode.NO_PARAM);
+    }
+
+    @Transactional
     public MemberRes saveMember (MemberSaveReq memberSaveReq) {
         if(memberRepository.existsMemberByEmail(memberSaveReq.email())){
             throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
@@ -38,6 +53,7 @@ public class MemberService {
         ).toResDto();
     }
 
+    @Transactional
     public MemberRes updateMember(MemberSaveReq memberSaveReq){
         Member member = memberRepository.findByEmail(memberSaveReq.email());
         if(member == null){
@@ -50,6 +66,9 @@ public class MemberService {
                 memberSaveReq.member_type()
         );
         return memberRepository.save(member).toResDto();
+    }
 
+    public void deleteMember(long id){
+        memberRepository.deleteById(id);
     }
 }

@@ -10,7 +10,8 @@ public enum ErrorCode {
     ENTITY_NOT_FOUND("CD02", "Entity Not Found"),
     DB_CONNECTION_REFUSED("CD03", "Database Connection is Refused"),
     DUPLICATED_EMAIL("CD04", "Duplicated Email"),
-    CANNOT_FIND_USER("CD05", "Cannot Find User");
+    CANNOT_FIND_USER("CD05", "Cannot Find User"),
+    NO_PARAM("CD06", "Parameters Are Empty");
 
     private final String code;
     private final String message;

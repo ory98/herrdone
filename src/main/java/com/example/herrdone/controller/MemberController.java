@@ -1,10 +1,9 @@
 package com.example.herrdone.controller;
 
+import com.example.herrdone.DTO.Request.MemberFindReq;
 import com.example.herrdone.DTO.Request.MemberSaveReq;
-import com.example.herrdone.entity.Member;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
-import com.example.herrdone.exception.ErrorResponse;
 import com.example.herrdone.repository.MemberRepository;
 import com.example.herrdone.service.MemberService;
 import com.example.herrdone.util.CommonResponse;
@@ -14,9 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 @RestController
@@ -38,10 +34,14 @@ public class MemberController {
         }
     }
 
-//    @GetMapping
-//    public Object getMember(){
-//
-//    }
+    @GetMapping
+    public Object getOneMember(MemberFindReq memberFindReq){
+        try {
+            return new CommonResponse<>(HttpStatus.OK, "해당 멤버 정보를 불러왔습니다.", memberService.findMember(memberFindReq.id(), memberFindReq.email()));
+        } catch (BusinessException e){
+            return e.getErrorCode();
+        }
+    }
 
     @PostMapping
     public Object postNewMember(@RequestBody MemberSaveReq memberSaveReq) {
@@ -61,6 +61,15 @@ public class MemberController {
         }
     }
 
+    @DeleteMapping
+    public Object deleteMember(@RequestBody MemberFindReq memberFindReq) {
+        try {
+            memberService.deleteMember(memberFindReq.id());
+            return new CommonResponse<>(HttpStatus.NO_CONTENT, "회원 삭제가 완료되었습니다.", null);
+        } catch (Exception e){
+            return ErrorCode.CANNOT_FIND_USER;
+        }
+    }
 
 
 }
