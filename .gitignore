@@ -38,3 +38,5 @@ out/
 
 ### data source 보안 ###
 /src/main/resources/application-datasource.yml
+### secret 보안 ###
+/src/main/resources/application-security.yml
