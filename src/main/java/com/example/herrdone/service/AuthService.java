@@ -32,7 +32,9 @@ public class AuthService {
             throw new BusinessException(ErrorCode.CANNOT_FIND_USER);
         }
 
-        if(!passwordEncoder.matches(loginReq.pw(), member.getPassword())){
+        // DB에 암호화가 되어있지 않아 애러 발생 > 임시로 코드 작성
+//        if(!passwordEncoder.matches(loginReq.pw(), member.getPassword())){
+        if (!loginReq.pw().equals(member.getPassword())){
             throw new BusinessException(ErrorCode.NOT_CORRECT_SIGN_IN);
         }
 
