@@ -2,19 +2,22 @@ package com.example.herrdone.config.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class JwtManager {
 
-    @Value("jwt.secret")
-    private final String secretKey;
+    @Value("${jwt.secret}")
+    @Getter
+    private String secretKey;
 
     public String generateAccessToken(CustomPrincipal principal){
         return JWT.create()

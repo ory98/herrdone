@@ -1,6 +1,7 @@
 package com.example.herrdone.config;
 
 import com.example.herrdone.DTO.Request.MemberSaveReq;
+import com.example.herrdone.config.security.JwtManager;
 import com.example.herrdone.entity.Member;
 import com.example.herrdone.repository.MemberRepository;
 import com.github.javafaker.Faker;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Configuration
 public class CreateDummyData {
@@ -19,7 +21,9 @@ public class CreateDummyData {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
 
 
 //    // 더미데이터가 필요한 경우에만
@@ -37,7 +41,8 @@ public class CreateDummyData {
 
     private Member generateMember () {
         Faker faker = new Faker();
-        MemberSaveReq memberSaveReq = new MemberSaveReq(faker.artist().name(), faker.business().creditCardNumber(), faker.internet().safeEmailAddress(), 1, 1);
+        Random random = new Random();
+        MemberSaveReq memberSaveReq = new MemberSaveReq(faker.artist().name(), faker.business().creditCardNumber(), faker.internet().safeEmailAddress(), random.nextInt(2), random.nextInt(2));
         return memberSaveReq.toEntity(passwordEncoder.encode(faker.business().creditCardNumber()));
     }
 }

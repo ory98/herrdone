@@ -2,6 +2,7 @@ package com.example.herrdone.controller;
 
 import com.example.herrdone.DTO.Request.MemberFindReq;
 import com.example.herrdone.DTO.Request.MemberSaveReq;
+import com.example.herrdone.config.security.JwtManager;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.MemberRepository;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 

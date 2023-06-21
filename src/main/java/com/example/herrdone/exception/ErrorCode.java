@@ -11,7 +11,8 @@ public enum ErrorCode {
     DB_CONNECTION_REFUSED("CD03", "Database Connection is Refused"),
     DUPLICATED_EMAIL("CD04", "Duplicated Email"),
     CANNOT_FIND_USER("CD05", "Cannot Find User"),
-    NO_PARAM("CD06", "Parameters Are Empty");
+    NO_PARAM("CD06", "Parameters Are Empty"),
+    NOT_CORRECT_SIGN_IN("CD07", "Invalid Email or Password");
 
     private final String code;
     private final String message;
