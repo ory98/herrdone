@@ -1,7 +1,11 @@
 package com.example.herrdone.config.aop;
 
+import com.example.herrdone.config.security.CustomPrincipal;
 import com.example.herrdone.config.security.JwtManager;
 import com.example.herrdone.controller.AuthController;
+import com.example.herrdone.entity.Member;
+import com.example.herrdone.exception.BusinessException;
+import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.MemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,25 +34,25 @@ public class authAspect {
     private final HttpServletResponse response;
 
     @Before("@annotation(com.example.herrdone.config.logging.annotation.NoLogging)")
-    public void vaildMember() throws IOException {
+    public void vaildMember() throws BusinessException {
 
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
 
-        // postman에서 테스트를 위해 header부분에 임의로 넣어준 토큰 데이터
-        String s = request.getHeader("Authorization");
+        CustomPrincipal customPrincipal = new CustomPrincipal((Member) request);
+
+        // 발급된 tocken 가져오기
+        String token = jwtManager.generateAccessToken(customPrincipal);
         // 토큰 가져와서 email 추출
-        String emailCheck = jwtManager.getMemberEmail(s);
-        // db 검증
-        Boolean valid = memberRepository.existsMemberByEmail(emailCheck);
+        String getEmail = jwtManager.getMemberEmail(token);
+        // db 검증 > 바로 db에 넣어서 할 수 있나요,,,(질문)
+        Boolean valid = memberRepository.existsMemberByEmail(getEmail);
 
-        // 클라이언트에 응답
-        if (valid) { // 검증 성공
-            return ;
-
-        } else { // 검증 실패
-
+        // 검증 실패
+        if (!valid) {
+            new BusinessException(ErrorCode.NOT_CORRECT_SIGN_IN);
         }
+        // 성공 시 컨트롤러 이동,,,
     }
 
 
