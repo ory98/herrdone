@@ -2,7 +2,7 @@ package com.example.herrdone.controller;
 
 
 import com.example.herrdone.DTO.Request.LoginReq;
-import com.example.herrdone.config.logging.annotation.NoLogging;
+import com.example.herrdone.config.security.annotation.AuthCheck;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.service.AuthService;
 import com.example.herrdone.util.CommonResponse;
@@ -23,7 +23,7 @@ public class AuthController {
     private final AuthService authService;
 
     // nologging : 로그인은 토큰 발행하기 위함 , 토큰을 검증하는 로직을 타면 안되기 때문에 nologging 어노테이션 생성 후 authAspect aop 제외
-    @NoLogging
+    @AuthCheck
     @GetMapping("/login")
     public Object login(@RequestBody LoginReq loginReq){
         try {

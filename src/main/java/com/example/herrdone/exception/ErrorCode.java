@@ -12,7 +12,8 @@ public enum ErrorCode {
     DUPLICATED_EMAIL("CD04", "Duplicated Email"),
     CANNOT_FIND_USER("CD05", "Cannot Find User"),
     NO_PARAM("CD06", "Parameters Are Empty"),
-    NOT_CORRECT_SIGN_IN("CD07", "Invalid Email or Password");
+    NOT_CORRECT_SIGN_IN("CD07", "Invalid Email or Password"),
+    INVALID_TOKEN("CD08", "Invalid Token");
 
     private final String code;
     private final String message;

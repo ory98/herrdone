@@ -2,18 +2,18 @@ package com.example.herrdone.controller;
 
 import com.example.herrdone.DTO.Request.MemberFindReq;
 import com.example.herrdone.DTO.Request.MemberSaveReq;
-import com.example.herrdone.config.security.JwtManager;
+import com.example.herrdone.config.security.annotation.AuthCheck;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.MemberRepository;
 import com.example.herrdone.service.MemberService;
 import com.example.herrdone.util.CommonResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,9 +37,11 @@ public class MemberController {
     }
 
     @GetMapping
-    public Object getOneMember(MemberFindReq memberFindReq){
+    @AuthCheck
+    public Object getOneMember(MemberFindReq memberFindReq, HttpServletRequest req){
+        String email = (String) req.getAttribute("email");
         try {
-            return new CommonResponse<>(HttpStatus.OK, "해당 멤버 정보를 불러왔습니다.", memberService.findMember(memberFindReq.id(), memberFindReq.email()));
+            return new CommonResponse<>(HttpStatus.OK, "해당 멤버 정보를 불러왔습니다.", memberService.findMember(memberFindReq.id(), email));
         } catch (BusinessException e){
             return e.getErrorCode();
         }

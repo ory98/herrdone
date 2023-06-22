@@ -33,8 +33,9 @@ public class AuthService {
         }
 
         // DB에 암호화가 되어있지 않아 애러 발생 > 임시로 코드 작성
-//        if(!passwordEncoder.matches(loginReq.pw(), member.getPassword())){
-        if (!loginReq.pw().equals(member.getPassword())){
+        // 임시로 했으면 다시 돌려놔야지?
+        if(!passwordEncoder.matches(loginReq.pw(), member.getPassword())){
+//        if (!loginReq.pw().equals(member.getPassword())){
             throw new BusinessException(ErrorCode.NOT_CORRECT_SIGN_IN);
         }
 
