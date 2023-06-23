@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,13 +27,13 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public MemberRes findMember (Long id, String email){
-        if(id != null){
+    public MemberRes findMember (MemberFindReq memberFindReq, String email, String memberType){
+        if(memberFindReq.type().equals("search") && memberType.equals(Member.MemberType.ADMIN.getType())){
             return memberRepository
-                    .findById(id)
+                    .findById(memberFindReq.id())
                     .orElseThrow(() -> new BusinessException(ErrorCode.CANNOT_FIND_USER))
                     .toResDto();
-        } else if (email != null){
+        } else if(!memberFindReq.type().equals("search")){
             return memberRepository
                     .findByEmail(email)
                     .toResDto();

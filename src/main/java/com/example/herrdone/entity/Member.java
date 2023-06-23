@@ -43,8 +43,8 @@ public class Member extends AuditingEntityDate {
     }
 
     public enum MemberType {
-        ADMIN("관리자"),
-        USER("사용자");
+        ADMIN("admin"),
+        USER("user");
 
         @Getter
         private String type;
@@ -55,9 +55,9 @@ public class Member extends AuditingEntityDate {
     }
 
     public enum MemberGender {
-        MALE("남성"),
-        FEMALE("여성"),
-        UNKNOWN("알리고 싶지 않음");
+        MALE("male"),
+        FEMALE("female"),
+        UNKNOWN("unknown");
 
         @Getter
         private String gender;

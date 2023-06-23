@@ -37,6 +37,10 @@ public class CustomPrincipal implements UserDetails {
         return collection;
     }
 
+    public Member.MemberType getMemberType(){
+        return this.member.getMember_type();
+    }
+
     @Override
     public String getPassword() {
         return this.member.getPassword();

@@ -40,8 +40,9 @@ public class MemberController {
     @AuthCheck
     public Object getOneMember(MemberFindReq memberFindReq, HttpServletRequest req){ // aop에서 할당해준 req.setAttribute("email") 값을 받아오기 위해 파라미터 추가, 커스텀 어노테이션으로 숨길 예정
         String email = (String) req.getAttribute("email");
+        String memberType = (String) req.getAttribute("memberType");
         try {
-            return new CommonResponse<>(HttpStatus.OK, "해당 멤버 정보를 불러왔습니다.", memberService.findMember(memberFindReq.id(), email));
+            return new CommonResponse<>(HttpStatus.OK, "해당 멤버 정보를 불러왔습니다.", memberService.findMember(memberFindReq, email, memberType));
         } catch (BusinessException e){
             return e.getErrorCode();
         }
