@@ -2,7 +2,6 @@ package com.example.herrdone.controller;
 
 
 import com.example.herrdone.DTO.Request.LoginReq;
-import com.example.herrdone.config.security.annotation.AuthCheck;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.service.AuthService;
 import com.example.herrdone.util.CommonResponse;

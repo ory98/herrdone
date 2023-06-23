@@ -2,7 +2,7 @@ package com.example.herrdone.controller;
 
 import com.example.herrdone.DTO.Request.MemberFindReq;
 import com.example.herrdone.DTO.Request.MemberSaveReq;
-import com.example.herrdone.config.security.annotation.AuthCheck;
+import com.example.herrdone.config.security.annotation.NeedLogin;
 import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.MemberRepository;
@@ -37,7 +37,7 @@ public class MemberController {
     }
 
     @GetMapping
-    @AuthCheck
+    @NeedLogin
     public Object getOneMember(MemberFindReq memberFindReq, HttpServletRequest req){ // aop에서 할당해준 req.setAttribute("email") 값을 받아오기 위해 파라미터 추가, 커스텀 어노테이션으로 숨길 예정
         String email = (String) req.getAttribute("email");
         String memberType = (String) req.getAttribute("memberType");

@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category extends AuditingEntityId {
 
-    @Column(name = "category_name" , nullable = false)
+    @Column(name = "category_name" , nullable = false, unique = true)
     private String category_name;
 
 

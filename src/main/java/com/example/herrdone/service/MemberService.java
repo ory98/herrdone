@@ -43,7 +43,7 @@ public class MemberService {
     @Transactional
     public MemberRes saveMember (MemberSaveReq memberSaveReq) {
         if(memberRepository.existsMemberByEmail(memberSaveReq.email())){
-            throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
+            throw new BusinessException(ErrorCode.DUPLICATED_DATA);
         }
         return memberRepository.save(
                 memberSaveReq.toEntity(

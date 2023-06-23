@@ -9,7 +9,7 @@ public enum ErrorCode {
     INVALID_INPUT_VALUE("CD01", "Invalid Input Value"),
     ENTITY_NOT_FOUND("CD02", "Entity Not Found"),
     DB_CONNECTION_REFUSED("CD03", "Database Connection is Refused"),
-    DUPLICATED_EMAIL("CD04", "Duplicated Email"),
+    DUPLICATED_DATA("CD04", "Duplicated Data"),
     CANNOT_FIND_USER("CD05", "Cannot Find User"),
     NO_PARAM("CD06", "Parameters Are Empty"),
     NOT_CORRECT_SIGN_IN("CD07", "Invalid Email or Password"),

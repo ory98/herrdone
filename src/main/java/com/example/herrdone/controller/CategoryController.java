@@ -1,5 +1,9 @@
 package com.example.herrdone.controller;
 
+import com.example.herrdone.DTO.Request.CategorySaveReq;
+import com.example.herrdone.config.security.annotation.NeedAdmin;
+import com.example.herrdone.config.security.annotation.NeedLogin;
+import com.example.herrdone.exception.BusinessException;
 import com.example.herrdone.exception.ErrorCode;
 import com.example.herrdone.repository.CategoryRepository;
 import com.example.herrdone.service.CategoryService;
@@ -9,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/Category")
 public class CategoryController {
 
-//    private final CategoryService categoryService;
+    private final CategoryService categoryService;
 
     public final CategoryRepository categoryRepository;
     @GetMapping("/all")
@@ -28,4 +33,15 @@ public class CategoryController {
             return ErrorCode.DB_CONNECTION_REFUSED;
         }
     }
+
+//    @PostMapping
+//    @NeedAdmin
+//    public Object postCategory(CategorySaveReq categorySaveReq){
+//        try {
+//            return new CommonResponse<>(HttpStatus.CREATED, "Category Created", categoryService.saveCategory(categorySaveReq));
+//        } catch (BusinessException e){
+//            return e.getErrorCode();
+//        }
+//    }
+
 }
