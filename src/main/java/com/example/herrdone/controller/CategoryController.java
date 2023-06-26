@@ -9,17 +9,16 @@ import com.example.herrdone.repository.CategoryRepository;
 import com.example.herrdone.service.CategoryService;
 import com.example.herrdone.util.CommonResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Category")
+@RequestMapping("/category")
+@Slf4j
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -34,14 +33,15 @@ public class CategoryController {
         }
     }
 
-//    @PostMapping
-//    @NeedAdmin
-//    public Object postCategory(CategorySaveReq categorySaveReq){
-//        try {
-//            return new CommonResponse<>(HttpStatus.CREATED, "Category Created", categoryService.saveCategory(categorySaveReq));
-//        } catch (BusinessException e){
-//            return e.getErrorCode();
-//        }
-//    }
+    @PostMapping
+    @NeedAdmin
+    public Object postCategory(@RequestBody CategorySaveReq categorySaveReq){
+        log.info(categorySaveReq.toString());
+        try {
+            return new CommonResponse<>(HttpStatus.CREATED, "Category Created", categoryService.saveCategory(categorySaveReq));
+        } catch (BusinessException e){
+            return e.getErrorCode();
+        }
+    }
 
 }

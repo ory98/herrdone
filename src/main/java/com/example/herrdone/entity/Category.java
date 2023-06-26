@@ -12,20 +12,20 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category extends AuditingEntityId {
 
-    @Column(name = "category_name" , nullable = false, unique = true)
-    private String category_name;
+    @Column(name = "categoryname" , nullable = false, unique = true)
+    private String categoryname;
 
 
     public CategoryRes toResDto(){
-        return new CategoryRes(this.getId(), this.category_name);
+        return new CategoryRes(this.getId(), this.categoryname);
     }
 
-    public Category (String category_name) {
-        this.category_name = category_name;
+    public Category (String categoryname) {
+        this.categoryname = categoryname;
     }
 
-    public void updateCategory (String category_name){
-        this.category_name = category_name;
+    public void updateCategory (String categoryname){
+        this.categoryname = categoryname;
     }
 
 }

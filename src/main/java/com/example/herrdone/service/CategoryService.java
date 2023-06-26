@@ -18,14 +18,15 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-//    @Transactional
-//    public CategoryRes saveCategory (CategorySaveReq categorySaveReq){
-//        if(categoryRepository.existsByCategory_name(categorySaveReq.category_name())){
-//            throw new BusinessException(ErrorCode.DUPLICATED_DATA);
-//        }
-//
-//        return categoryRepository
-//                .save(categorySaveReq.toEntity())
-//                .toResDto();
-//    }
+    @Transactional
+    public CategoryRes saveCategory (CategorySaveReq categorySaveReq){
+        if(categoryRepository.existsByCategoryname(categorySaveReq.categoryname())){
+            throw new BusinessException(ErrorCode.DUPLICATED_DATA);
+        }
+
+        return categoryRepository
+                .save(categorySaveReq.toEntity())
+                .toResDto();
+    }
+
 }

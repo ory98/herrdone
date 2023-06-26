@@ -53,7 +53,7 @@ public class AuthAspect {
         }
         String memberType = jwtManager.getMemberType(token); // 토큰으로 멤버 타입을 뽑아냄
 
-        if(memberType != Member.MemberType.ADMIN.getType()){
+        if(!memberType.equals(Member.MemberType.ADMIN.getType())){
             throw new BusinessException(ErrorCode.INVALID_TOKEN);
         }
 
