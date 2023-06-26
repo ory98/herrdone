@@ -10,8 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class HerrdoneApplication {
 
 	public static void main(String[] args) {
-		PasswordEncoder passwordEncoder = null;
-		System.out.println(passwordEncoder.encode("123123"));
 		SpringApplication.run(HerrdoneApplication.class, args);
 	}
 

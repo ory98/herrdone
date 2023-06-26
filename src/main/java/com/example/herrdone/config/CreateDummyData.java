@@ -26,9 +26,10 @@ public class CreateDummyData {
 
 
 
-//    // 더미데이터가 필요한 경우에만
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void createDummyData(){
+    // 더미데이터가 필요한 경우에만
+    @EventListener(ApplicationReadyEvent.class)
+    public void createDummyData(){
+        System.out.println(passwordEncoder.encode("123123"));
 //        List<Member> memberList = new ArrayList<>();
 //        int count = 0;
 //        while (count < 100){
@@ -36,8 +37,8 @@ public class CreateDummyData {
 //            count++;
 //        }
 //        memberRepository.saveAll(memberList);
-//    }
-//    // 더미데이터가 필요한 경우에만
+    }
+    // 더미데이터가 필요한 경우에만
 
     private Member generateMember () {
         Faker faker = new Faker();
