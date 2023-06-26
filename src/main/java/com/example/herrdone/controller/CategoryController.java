@@ -33,10 +33,18 @@ public class CategoryController {
         }
     }
 
+    @GetMapping
+    public Object getCategory(Long id){
+        try {
+            return new CommonResponse<>(HttpStatus.OK, "OK", categoryRepository.findById(id));
+        } catch (Exception e){
+            return ErrorCode.ENTITY_NOT_FOUND;
+        }
+    }
+
     @PostMapping
     @NeedAdmin
     public Object postCategory(@RequestBody CategorySaveReq categorySaveReq){
-        log.info(categorySaveReq.toString());
         try {
             return new CommonResponse<>(HttpStatus.CREATED, "Category Created", categoryService.saveCategory(categorySaveReq));
         } catch (BusinessException e){
@@ -44,6 +52,26 @@ public class CategoryController {
         }
     }
 
+    @PutMapping
+    @NeedAdmin
+    public Object updateCategory(@RequestBody CategorySaveReq categorySaveReq){
+        try {
+            return new CommonResponse<>(HttpStatus.OK, "Category Updated", categoryService.updateCategory(categorySaveReq));
+        } catch (BusinessException e){
+            return e.getErrorCode();
+        }
+    }
+
+    @DeleteMapping
+    @NeedAdmin
+    public Object deleteCategory(@RequestBody CategorySaveReq categorySaveReq){
+        try {
+            categoryService.deleteCategory(categorySaveReq);
+            return new CommonResponse<>(HttpStatus.NO_CONTENT, "Category Deleted", null);
+        } catch (Exception e){
+            return ErrorCode.ENTITY_NOT_FOUND;
+        }
+    }
 
 
 }
