@@ -15,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 @Transactional
@@ -27,19 +29,19 @@ public class AuthService {
 
 
     public LoginRes login(LoginReq loginReq){
-        Member member = memberRepository.findByEmail(loginReq.id());
+        Optional<Member> member = memberRepository.findByEmail(loginReq.id());
         if(member == null){
             throw new BusinessException(ErrorCode.CANNOT_FIND_USER);
         }
 
         // DB에 암호화가 되어있지 않아 애러 발생 > 임시로 코드 작성
         // 임시로 했으면 다시 돌려놔야지?
-        if(!passwordEncoder.matches(loginReq.pw(), member.getPassword())){
+        if(!passwordEncoder.matches(loginReq.pw(), member.get().getPassword())){
 //        if (!loginReq.pw().equals(member.getPassword())){
             throw new BusinessException(ErrorCode.NOT_CORRECT_SIGN_IN);
         }
 
-        CustomPrincipal customPrincipal = new CustomPrincipal(member);
+        CustomPrincipal customPrincipal = new CustomPrincipal(member.get());
 
         return new LoginRes(loginReq.id(), jwtManager.generateAccessToken(customPrincipal));
     }

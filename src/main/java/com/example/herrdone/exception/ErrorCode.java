@@ -13,7 +13,8 @@ public enum ErrorCode {
     CANNOT_FIND_USER("CD05", "Cannot Find User"),
     NO_PARAM("CD06", "Parameters Are Empty"),
     NOT_CORRECT_SIGN_IN("CD07", "Invalid Email or Password"),
-    INVALID_TOKEN("CD08", "Invalid Token");
+    INVALID_TOKEN("CD08", "Invalid Token"),
+    NO_ACCESS("CD09", "User Cannot Access");
 
     private final String code;
     private final String message;

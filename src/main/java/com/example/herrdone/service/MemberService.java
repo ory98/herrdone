@@ -10,7 +10,6 @@ import com.example.herrdone.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,20 +29,24 @@ public class MemberService {
     public MemberRes findMember (MemberFindReq memberFindReq, String email, String memberType){
         if(memberFindReq.type().equals("search") && memberType.equals(Member.MemberType.ADMIN.getType())){
             return memberRepository
-                    .findById(memberFindReq.id())
+                    .findByEmail(memberFindReq.email())
                     .orElseThrow(() -> new BusinessException(ErrorCode.CANNOT_FIND_USER))
                     .toResDto();
         } else if(!memberFindReq.type().equals("search")){
             return memberRepository
                     .findByEmail(email)
+                    .orElseThrow()
                     .toResDto();
         } else throw new BusinessException(ErrorCode.NO_PARAM);
     }
 
     @Transactional
     public MemberRes saveMember (MemberSaveReq memberSaveReq) {
-        if(memberRepository.existsMemberByEmail(memberSaveReq.email())){
+        if(memberRepository.existsMemberByEmail(memberSaveReq.email()) && (memberSaveReq.member_type() == '0') ){
             throw new BusinessException(ErrorCode.DUPLICATED_DATA);
+        }
+        if (memberSaveReq.member_type() == '1') {
+            throw new BusinessException(ErrorCode.NO_ACCESS);
         }
         return memberRepository.save(
                 memberSaveReq.toEntity(
@@ -56,20 +59,26 @@ public class MemberService {
 
     @Transactional
     public MemberRes updateMember(MemberSaveReq memberSaveReq){
-        Member member = memberRepository.findByEmail(memberSaveReq.email());
+        Optional<Member> member = memberRepository.findByEmail(memberSaveReq.email());
         if(member == null){
             throw new BusinessException(ErrorCode.CANNOT_FIND_USER);
         }
-        member.updateMember(
+        member.get().updateMember(
                 memberSaveReq.membername(),
                 memberSaveReq.password(),
                 memberSaveReq.gender(),
                 memberSaveReq.member_type()
         );
-        return memberRepository.save(member).toResDto();
+        return memberRepository.save(member.get()).toResDto();
     }
 
-    public void deleteMember(long id){
-        memberRepository.deleteById(id);
+    @Transactional
+    public Long deleteMember(MemberFindReq memberFindReq){
+        System.out.println(memberFindReq.email());
+        Optional<Member> member = memberRepository.findByEmail(memberFindReq.email());
+        if (member == null){
+            throw new BusinessException(ErrorCode.CANNOT_FIND_USER);
+        }
+        return memberRepository.deleteMember(memberFindReq.email());
     }
 }
