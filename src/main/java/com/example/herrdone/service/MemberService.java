@@ -79,6 +79,6 @@ public class MemberService {
         if (member == null){
             throw new BusinessException(ErrorCode.CANNOT_FIND_USER);
         }
-        return memberRepository.deleteMember(memberFindReq.email());
+        return memberRepository.deleteMemberByEmail(memberFindReq.email());
     }
 }
